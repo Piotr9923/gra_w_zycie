@@ -1,4 +1,3 @@
-
 int ile_sasiadow(int x,int y ,int *tab[], int x1 ,int y1)
 {
 
