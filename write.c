@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+ 
 void wypisz(int x,int y,int *tab[])
 {
 	printf("\n");
