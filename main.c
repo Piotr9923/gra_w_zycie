@@ -42,8 +42,8 @@ for(int i=1;i<argc;i++)
 	if(strcmp(argv[i],"--y")==0) y=atoi(argv[i+1]);
 	if(strcmp(argv[i],"--graphicfile")==0) {graphicfile=argv[i+1];czy_nazwa=1;}
 	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];czy_nazwa1=1;}	
-	if(strcmp(argv[i],"--livecolor")==0){lred=argv[i+1];lblue=argv[i+2];lgreen=argv[i+3];}
-	if(strcmp(argv[i],"--deadcolor")==0){dred=argv[i+1];dblue=argv[i+2];dgreen=argv[i+3];}	
+	if(strcmp(argv[i],"--livecolor")==0){lred=atoi(argv[i+1]);lblue=atoi(argv[i+2]);lgreen=atoi(argv[i+3]);}
+	if(strcmp(argv[i],"--deadcolor")==0){dred=atoi(argv[i+1]);dblue=atoi(argv[i+2]);dgreen=atoi(argv[i+3]);}	
 }
 
 int **tab,**zmiana;			//tab- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    zmiana tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
@@ -149,7 +149,7 @@ do{
     wypisz(x,y,tab);
         
     printf("\nTwoja nazwa to: %s, %s\n",graphicfile,txtfile);
-	grafika(x,y,tab,pixel_size,graphicfile);
+	grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
 
 	
 
