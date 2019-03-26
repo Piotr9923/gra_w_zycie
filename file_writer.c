@@ -3,8 +3,7 @@
 
  void grafika(int x,int y,int *tab[],int size,char*name, int lr,int lg,int lb,int dr,int dg,int db) {
  	
-		printf("%d, %d, %d               %d,%d,%d",lr,lg,lb,dr,dg,db);
-
+	
 	    const int dimx = x; 
         const int dimy = y;
         int i, j;
@@ -34,6 +33,21 @@
             }
         }
         fclose(fp);
+ }
+ 
+ 
+ void tekst(int x,int y,int *tab[], char* name)
+ {
+ 	
+ 	FILE *fp=fopen(name,"w");
+ 	
+ 	for(int j=0;j<x;j++)
+ 	for(int i=y-1;i>=0;i--)
+ 	{
+ 		if(tab[i][j]==1) fprintf(fp,"%d %d\n",j+1,y-i);
+ 		
+	}
+ 	
  }
  
  
