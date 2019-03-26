@@ -3,7 +3,7 @@
 
  void grafika(int x,int y,int *tab[],int size,char*name, int lr,int lg,int lb,int dr,int dg,int db) {
  	
-	
+		printf("%d, %d, %d               %d,%d,%d",lr,lg,lb,dr,dg,db);
 
 	    const int dimx = x; 
         const int dimy = y;
