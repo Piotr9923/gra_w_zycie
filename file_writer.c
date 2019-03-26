@@ -47,7 +47,7 @@
  		if(tab[i][j]==1) fprintf(fp,"%d %d\n",j+1,y-i);
  		
 	}
- 	
+ 	 fclose(fp);
  }
  
  
