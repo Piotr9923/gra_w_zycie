@@ -148,11 +148,11 @@ do{
 	//wypisanie uk³adu komórek na konsoli
     wypisz(x,y,tab);
         
-    printf("\nTwoja nazwa to: %s, %s\n",graphicfile,txtfile);
 	grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
 	tekst(x,y,tab,txtfile);
 	
-
+	error_size(graphicfile[dl_grafika-7],graphicfile[dl_grafika-6],graphicfile[dl_grafika-5]);
+	
 	czekaj(0.25);
  	printf("\n\n\n\n");
     
