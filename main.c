@@ -98,7 +98,7 @@ int dl_txt=strlen(txtfile);
 //wypisanie pocz¹tkowego uk³adu komórek do pliku o nazwie podanej przez u¿ytkownika/domyœlnej
  grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
  printf("\n");
-    
+tekst(x,y,tab,txtfile);
 
 //pêtla w której bêdziemy zmieniaæ stany komórek na podstawie ich stany oraz iloœci s¹siadów
 do{
@@ -150,7 +150,7 @@ do{
         
     printf("\nTwoja nazwa to: %s, %s\n",graphicfile,txtfile);
 	grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
-
+	tekst(x,y,tab,txtfile);
 	
 
 	czekaj(0.25);
