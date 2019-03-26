@@ -7,6 +7,8 @@
 */
 
 
+/*W programie zmienne, na króte wp³yw ma u¿ytkownik zosta³y zapisane za pomoc¹ angielskich s³ów, 
+co pomaga programiœcie w odró¿nieniu zmiennych odpowiedzialnych za ustawienia od pozosta³ych zmiennych */
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -27,6 +29,11 @@ char* txtfile=nazwa_tekst;	//nazwa pliku do którego zapisujemy uk³ad komórek
 int czy_nazwa=0; 	//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku graficzengo
 int czy_nazwa1=0;//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku tekstowego
 
+
+int lred=0,lgreen=0,lblue=0;
+int dred=255,dgreen=255,dblue=255;
+
+
 //sprawdzanie czy u¿ytkownik poda³ wartoœci. Jeœli poda³ to zostan¹ zmienione z domyœlnych na takie jakie ¿yczy sobie u¿ytkownik
 for(int i=1;i<argc;i++)
 {
@@ -35,7 +42,9 @@ for(int i=1;i<argc;i++)
 	if(strcmp(argv[i],"--x")==0) x=atoi(argv[i+1]);
 	if(strcmp(argv[i],"--y")==0) y=atoi(argv[i+1]);
 	if(strcmp(argv[i],"--graphicfile")==0) {graphicfile=argv[i+1];czy_nazwa=1;}
-	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];czy_nazwa1=1;}
+	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];czy_nazwa1=1;}	
+	if(strcmp(argv[i],"--livecolor")==0){lred=argv[+1];lblue=argv[+2];lgreen=argv[+3];}
+	if(strcmp(argv[i],"--deadcolor")==0){dred=argv[+1];dblue=argv[+2];dgreen=argv[+3];}	
 }
 
 int **tab,**zmiana;			//tab- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    zmiana tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
