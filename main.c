@@ -1,5 +1,4 @@
 /*do zrobienia:
-- dodaæ kolory ¿ywych i martwych komórek;
 - dodaæ obs³ugê b³êdów;
 - dodaæ liczenie wczytanych punktów (np. b³¹d:   punkt nr x  (,) znajduj¹cy siê w pliku z danymi jest nie poprawny);
 - dodaæ instrukcjê goto, aby nie zapisywaæ b³êdnych plików do tablicy;
@@ -43,8 +42,8 @@ for(int i=1;i<argc;i++)
 	if(strcmp(argv[i],"--y")==0) y=atoi(argv[i+1]);
 	if(strcmp(argv[i],"--graphicfile")==0) {graphicfile=argv[i+1];czy_nazwa=1;}
 	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];czy_nazwa1=1;}	
-	if(strcmp(argv[i],"--livecolor")==0){lred=argv[+1];lblue=argv[+2];lgreen=argv[+3];}
-	if(strcmp(argv[i],"--deadcolor")==0){dred=argv[+1];dblue=argv[+2];dgreen=argv[+3];}	
+	if(strcmp(argv[i],"--livecolor")==0){lred=argv[i+1];lblue=argv[i+2];lgreen=argv[i+3];}
+	if(strcmp(argv[i],"--deadcolor")==0){dred=argv[i+1];dblue=argv[i+2];dgreen=argv[i+3];}	
 }
 
 int **tab,**zmiana;			//tab- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    zmiana tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
@@ -97,7 +96,7 @@ int dl_txt=strlen(txtfile);
 
     
 //wypisanie pocz¹tkowego uk³adu komórek do pliku o nazwie podanej przez u¿ytkownika/domyœlnej
- grafika(x,y,tab,pixel_size,graphicfile);
+ grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
  printf("\n");
     
 
