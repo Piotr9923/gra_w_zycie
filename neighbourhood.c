@@ -1,4 +1,4 @@
-int ile_sasiadow(int x,int y ,int *tab[], int x1 ,int y1)
+int check_neighbourhood(int x,int y ,int *tab[], int x1 ,int y1)
 {
 
         int ile=0;

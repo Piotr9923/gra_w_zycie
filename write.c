@@ -1,6 +1,6 @@
 #include<stdio.h>
  
-void wypisz(int x,int y,int *tab[])
+void write(int x,int y,int *grid[])
 {
 	printf("\n");
         printf(" ");
@@ -12,7 +12,7 @@ for(int i=0;i<y;i++)
         {
         
                 if(j==0) printf("|");
-                if(tab[i][j]==1)printf("X ");
+                if(grid[i][j]==1)printf("X ");
                 else printf("  ");
                 if(j==x-1) printf("|");
         }

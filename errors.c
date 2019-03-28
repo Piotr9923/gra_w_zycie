@@ -3,20 +3,6 @@
 #include<ctype.h>
 #include<string.h>
 
-
-
-	/*	if(language==0)printf("!!");
-		if(language==1)printf("!!");
-		if(language==2)printf("!!");
-		if(language==3)printf("!!");
-		if(language==4)printf("!!");
-		if(language==5)printf("!!");*/
-
-
-
-
-
-
 //funkcja zg³aszaj¹ca b³¹d, gdy plik wyjœciowy koñczy siê cyframi"999", co jest maksymaln¹ liczb¹ plików wyjœciowych
 void error_size(char a, char b,char c,int language)
 {

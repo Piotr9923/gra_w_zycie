@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include<string.h>
 
- void grafika(int x,int y,int *tab[],int size,char*name, int lr,int lg,int lb,int dr,int dg,int db) {
+ void write_graphic(int x,int y,int *grid[],int size,char*name, int lr,int lg,int lb,int dr,int dg,int db) {
  	
 	
 	    const int dimx = x; 
@@ -16,17 +16,17 @@
         	{
           for(i=0; i<dimx; ++i){         
                         static unsigned char color[3];
-                        if(tab[j][i]==1)
+                        if(grid[j][i]==1)
                         {
-                        color[0]=lr; /* red */
-                        color[1]=lg; /* green */
-                        color[2]=lb; /* blue */
+                        color[0]=lr; /* red-czerwony */
+                        color[1]=lg; /* green-zielony */
+                        color[2]=lb; /* blue-niebieski */
                     	}
                     	 else
                         {
-                        color[0]=dr; /* red */
-                        color[1]=dg; /* green */
-                        color[2]=db; /* blue */
+                        color[0]=dr; /* red-czerwony */
+                        color[1]=dg; /* green-zielony */
+                        color[2]=db; /* blue-niebieski */
                     	}
                     	for(int p2=0;p2<size;p2++)fwrite(color,1,3,fp);
                 }
@@ -36,7 +36,7 @@
  }
  
  
- void tekst(int x,int y,int *tab[], char* name)
+ void write_txt(int x,int y,int *grid[], char* name)
  {
  	
  	FILE *fp=fopen(name,"w");
@@ -44,7 +44,7 @@
  	for(int j=0;j<x;j++)
  	for(int i=y-1;i>=0;i--)
  	{
- 		if(tab[i][j]==1) fprintf(fp,"%d %d\n",j+1,y-i);
+ 		if(grid[i][j]==1) fprintf(fp,"%d %d\n",j+1,y-i);
  		
 	}
  	 fclose(fp);

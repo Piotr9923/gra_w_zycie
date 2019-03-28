@@ -2,9 +2,9 @@
 #include<stdlib.h>
 #include<time.h>
 
-void czekaj( double sekundy )
+void wait( double seconds )
 {
-    clock_t koniec_czekania;
-    koniec_czekania = clock() + sekundy * CLOCKS_PER_SEC;
-    while( clock() < koniec_czekania ) { }
+    clock_t end_wait;
+    end_wait = clock() + seconds * CLOCKS_PER_SEC;
+    while( clock() < end_wait ) { }
 }
