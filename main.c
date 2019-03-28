@@ -1,13 +1,3 @@
-/*do zrobienia:
-- dodaæ obs³ugê b³êdów;
-- dodaæ liczenie wczytanych punktów (np. b³¹d:   punkt nr x  (,) znajduj¹cy siê w pliku z danymi jest nie poprawny);
-- dodaæ instrukcjê goto, aby nie zapisywaæ b³êdnych plików do tablicy;
-- dodaæ b³¹d koñczenia programu gdy plik wyjœciowy bêdzie mia³ nazwê z numerami 999
-*/
-
-
-/*W programie zmienne, na króte wp³yw ma u¿ytkownik zosta³y zapisane za pomoc¹ angielskich s³ów, 
-co pomaga programiœcie w odró¿nieniu zmiennych odpowiedzialnych za ustawienia od pozosta³ych zmiennych */
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -31,20 +21,32 @@ int czy_nazwa1=0;//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wy
 
 int lred=0,lgreen=0,lblue=0;
 int dred=255,dgreen=255,dblue=255;
-
+int is_filename=0;
 
 //sprawdzanie czy u¿ytkownik poda³ wartoœci. Jeœli poda³ to zostan¹ zmienione z domyœlnych na takie jakie ¿yczy sobie u¿ytkownik
 for(int i=1;i<argc;i++)
 {
-	if(strcmp(argv[i],"--filename")==0) filename=argv[i+1];
-	if(strcmp(argv[i],"--pixelsize")==0) pixel_size=atoi(argv[i+1]);
-	if(strcmp(argv[i],"--x")==0) x=atoi(argv[i+1]);
-	if(strcmp(argv[i],"--y")==0) y=atoi(argv[i+1]);
+	if(strcmp(argv[i],"--filename")==0) {filename=argv[i+1];is_filename=1;}
+	if(strcmp(argv[i],"--pixelsize")==0) {error_number("--pixelsize",argv[i+1]);pixel_size=atoi(argv[i+1]);}
+	if(strcmp(argv[i],"--x")==0) {error_number("--x",argv[i+1]);error_number_size("--x",atoi(argv[i+1]),1,100);x=atoi(argv[i+1]);}
+	if(strcmp(argv[i],"--y")==0) {error_number("--y",argv[i+1]);error_number_size("--y",atoi(argv[i+1]),1,100);y=atoi(argv[i+1]);}
 	if(strcmp(argv[i],"--graphicfile")==0) {graphicfile=argv[i+1];czy_nazwa=1;}
 	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];czy_nazwa1=1;}	
-	if(strcmp(argv[i],"--livecolor")==0){lred=atoi(argv[i+1]);lblue=atoi(argv[i+2]);lgreen=atoi(argv[i+3]);}
-	if(strcmp(argv[i],"--deadcolor")==0){dred=atoi(argv[i+1]);dblue=atoi(argv[i+2]);dgreen=atoi(argv[i+3]);}	
+	if(strcmp(argv[i],"--livecolor")==0)
+	{
+		error_number("--livecolor",argv[i+1]);error_number("--livecolor",argv[i+2]);error_number("--livecolor",argv[i+3]);
+		error_number_size("--livecolor",atoi(argv[i+1]),0,255);error_number_size("--livecolor",atoi(argv[i+2]),0,255);error_number_size("--livecolor",atoi(argv[i+3]),0,255);
+		lred=atoi(argv[i+1]);lblue=atoi(argv[i+2]);lgreen=atoi(argv[i+3]);
+	}
+	
+	if(strcmp(argv[i],"--deadcolor")==0)
+	{
+		error_number("--deadcolor",argv[i+1]);error_number("--deadcolor",argv[i+2]);error_number("--deadcolor",argv[i+3]);
+		error_number_size("--deadcolor",atoi(argv[i+1]),0,255);error_number_size("--deadcolor",atoi(argv[i+2]),0,255);error_number_size("--deadcolor",atoi(argv[i+3]),0,255);
+		dred=atoi(argv[i+1]);dblue=atoi(argv[i+2]);dgreen=atoi(argv[i+3]);
+	}	
 }
+if(is_filename==0) error_nofilename();
 
 int **tab,**zmiana;			//tab- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    zmiana tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
 
@@ -70,12 +72,14 @@ for(int i=0;i<y;i++)
               
         }
 }
+
+
 //wczytywanie danych z pliku o nazwie podanej przez u¿ytkownika
 wczytaj_dane(x,y,tab,filename);
 
 //wypisywanie stanu pocz¹tkowego tabliy
 wypisz(x,y,tab);
-
+exit(0);
 //funkcja opóŸniaj¹ca dziêki której u¿ytkownik bêdzie przez chwilê móg³ przyjrzeæ siê uk³adowi komórek
 czekaj(0.5);
 
