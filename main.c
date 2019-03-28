@@ -5,59 +5,71 @@
 
 int main(int argc, char *argv[]) 
 {
-
-
-//ustawienie wartoœci domyœlnych dla zmiennych
+/*ustawienie wartoœci domyœlnych dla zmiennych odpowiedzialnych za ustawienia*/
 int x=20, y=20, pixel_size=1;	//x-rozmiar planszy(wspó³rzêdna x)   y-rozmiar planszy (wspó³rzêdna y)  pixel_size-rozmiar z ilu pikseli ma siê sk³adaæ bok komórki
 char* filename;   // nazwa pliku z danymi
-char nazwa_grafika[]="obraz000.ppm";
-char* graphicfile=nazwa_grafika;	// nazwa pliku do którego zapisujemy grafikê
-char nazwa_tekst[]="dane000.txt";
-char* txtfile=nazwa_tekst;	//nazwa pliku do którego zapisujemy uk³ad komórek
+char name_graphic[]="image000.ppm";
+char* graphicfile=name_graphic;	// nazwa pliku do którego zapisujemy grafikê
+char name_txt[]="dane000.txt";
+char* txtfile=name_txt;	//nazwa pliku do którego zapisujemy uk³ad komórek
 
-int czy_nazwa=0; 	//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku graficzengo
-int czy_nazwa1=0;//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku tekstowego
+int is_graphicname=0; 	//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku graficzengo
+int is_txtname=0;//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku tekstowego
 
 
-int lred=0,lgreen=0,lblue=0;
-int dred=255,dgreen=255,dblue=255;
-int is_filename=0;
+int lred=0,lgreen=0,lblue=0; //kolory ¿ywych komórek w modelu RGB
+int dred=255,dgreen=255,dblue=255;//kolory martwych komórek w modelu RGB
+int is_filename=0;//zmienna pomocnicza, która wskazuje czy zosta³ podany plik
+int language=0;//zmienna wskazuj¹ca wybrany jêzyk domyœlanie angielski(wartoœæ 0)
 
-//sprawdzanie czy u¿ytkownik poda³ wartoœci. Jeœli poda³ to zostan¹ zmienione z domyœlnych na takie jakie ¿yczy sobie u¿ytkownik
+//sprawdzenie czy u¿ytkownik wybra³ jêzyk. Jeœli tak to zmiana zmiennej wskazuj¹cej na jêzyk(0-angielski,1-polski,2-niemiecki,3-francuski,4-w³oski,5-hiszpañski)
+if(strcmp(argv[1],"--language")==0) 
+{
+	if(strcmp(argv[2],"pl")==0) language=1;
+	else if(strcmp(argv[2],"de")==0) language=2;
+	else if(strcmp(argv[2],"fr")==0) language=3;
+	else if(strcmp(argv[2],"it")==0) language=4;
+	else if(strcmp(argv[2],"es")==0) language=5;
+	else printf("I do not understand: %s. I select default language - English\n",argv[2]);
+}
+
+/*sprawdzanie czy u¿ytkownik poda³ wartoœci dla zmiennych odpowiedzialnych za ustawienia. Jeœli poda³ to zostan¹ zmienione z domyœlnych na takie jakie ¿yczy sobie u¿ytkownik*/
 for(int i=1;i<argc;i++)
 {
 	if(strcmp(argv[i],"--filename")==0) {filename=argv[i+1];is_filename=1;}
-	if(strcmp(argv[i],"--pixelsize")==0) {error_number("--pixelsize",argv[i+1]);pixel_size=atoi(argv[i+1]);}
-	if(strcmp(argv[i],"--x")==0) {error_number("--x",argv[i+1]);error_number_size("--x",atoi(argv[i+1]),1,100);x=atoi(argv[i+1]);}
+	if(strcmp(argv[i],"--pixelsize")==0) {error_number("--pixelsize",argv[i+1],language);pixel_size=atoi(argv[i+1]);}
+	if(strcmp(argv[i],"--x")==0) {error_number("--x",argv[i+1],language);error_number_size("--x",atoi(argv[i+1]),1,100,language);x=atoi(argv[i+1]);}
 	if(strcmp(argv[i],"--y")==0) {error_number("--y",argv[i+1]);error_number_size("--y",atoi(argv[i+1]),1,100);y=atoi(argv[i+1]);}
-	if(strcmp(argv[i],"--graphicfile")==0) {graphicfile=argv[i+1];czy_nazwa=1;}
-	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];czy_nazwa1=1;}	
+	if(strcmp(argv[i],"--graphicfile")==0) {graphicfile=argv[i+1];is_graphicname=1;}
+	if(strcmp(argv[i],"--txtfile")==0){txtfile=argv[i+1];is_txtname=1;}	
 	if(strcmp(argv[i],"--livecolor")==0)
 	{
-		error_number("--livecolor",argv[i+1]);error_number("--livecolor",argv[i+2]);error_number("--livecolor",argv[i+3]);
-		error_number_size("--livecolor",atoi(argv[i+1]),0,255);error_number_size("--livecolor",atoi(argv[i+2]),0,255);error_number_size("--livecolor",atoi(argv[i+3]),0,255);
+		error_number("--livecolor",argv[i+1],language);error_number("--livecolor",argv[i+2],language);error_number("--livecolor",argv[i+3],language);
+		error_number_size("--livecolor",atoi(argv[i+1]),0,255,language);error_number_size("--livecolor",atoi(argv[i+2]),0,255,language);error_number_size("--livecolor",atoi(argv[i+3]),0,255,language);
 		lred=atoi(argv[i+1]);lblue=atoi(argv[i+2]);lgreen=atoi(argv[i+3]);
 	}
 	
 	if(strcmp(argv[i],"--deadcolor")==0)
 	{
-		error_number("--deadcolor",argv[i+1]);error_number("--deadcolor",argv[i+2]);error_number("--deadcolor",argv[i+3]);
-		error_number_size("--deadcolor",atoi(argv[i+1]),0,255);error_number_size("--deadcolor",atoi(argv[i+2]),0,255);error_number_size("--deadcolor",atoi(argv[i+3]),0,255);
+		error_number("--deadcolor",argv[i+1],language);error_number("--deadcolor",argv[i+2],language);error_number("--deadcolor",argv[i+3],language);
+		error_number_size("--deadcolor",atoi(argv[i+1]),0,255,language);error_number_size("--deadcolor",atoi(argv[i+2]),0,255,language);error_number_size("--deadcolor",atoi(argv[i+3]),0,255,language);
 		dred=atoi(argv[i+1]);dblue=atoi(argv[i+2]);dgreen=atoi(argv[i+3]);
 	}	
 }
-if(is_filename==0) error_nofilename();
 
-int **tab,**zmiana;			//tab- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    zmiana tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
+
+if(is_filename==0) error_nofilename(language);//sprawdzenie czy u¿ytkownik poda³ plik z danymi
+
+int **grid,**change;			//grid- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    zmiana tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
 
 //alokacja pamiêci dla tablic
-tab=malloc(sizeof(int*)*y);
-zmiana=malloc(sizeof(int*)*y);	
+grid=malloc(sizeof(int*)*y);
+change=malloc(sizeof(int*)*y);	
 
 for(int i=0;i<y;++i)
 {
-tab[i]=malloc(sizeof(int)*x);
-zmiana[i]=malloc(sizeof(int)*x);
+grid[i]=malloc(sizeof(int)*x);
+change[i]=malloc(sizeof(int)*x);
 
 }
 //koniec alokacji pamiêci
@@ -67,48 +79,48 @@ for(int i=0;i<y;i++)
 {
         for(int j=0;j<x;j++)
         {
-                tab[i][j]=0;
-                zmiana[i][j]=0;
+                grid[i][j]=0;
+                change[i][j]=0;
               
         }
 }
 
 
 //wczytywanie danych z pliku o nazwie podanej przez u¿ytkownika
-wczytaj_dane(x,y,tab,filename);
+read_file(x,y,grid,filename,language);
 
 //wypisywanie stanu pocz¹tkowego tabliy
-wypisz(x,y,tab);
+write(x,y,grid);
 exit(0);
 //funkcja opóŸniaj¹ca dziêki której u¿ytkownik bêdzie przez chwilê móg³ przyjrzeæ siê uk³adowi komórek
-czekaj(0.5);
+wait(0.5);
 
 //zmienne pomocnicze oznaczaj¹ce liczbê zmian oraz iloœæ ¿ywych komórek
-        int liczbazmian=0;
-        int ile_zywych=0;
+        int how_many_change=0;
+        int how_many_live=0;
     
     
     
 
 	//jeœli zosta³a podana nazwa pliku graficznego to program dopisuje numer obrazu i rozszerzenie  
-if(czy_nazwa==1) strcat(graphicfile,"000.ppm");
+if(is_graphicname==1) strcat(graphicfile,"000.ppm");
 int dl_grafika=strlen(graphicfile);
 
 	//jeœli zosta³a podana nazwa pliku tekstowego to program dopisuje numer pliku i rozszerzenie  
-if(czy_nazwa1==1) strcat(txtfile,"000.txt");
+if(is_txtname==1) strcat(txtfile,"000.txt");
 int dl_txt=strlen(txtfile);
 
     
 //wypisanie pocz¹tkowego uk³adu komórek do pliku o nazwie podanej przez u¿ytkownika/domyœlnej
- grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
+ write_graphic(x,y,grid,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
  printf("\n");
-tekst(x,y,tab,txtfile);
+write_txt(x,y,grid,txtfile);
 
 //pêtla w której bêdziemy zmieniaæ stany komórek na podstawie ich stany oraz iloœci s¹siadów
 do{
 	
 
-	//zwiêkszenie numeru grafiki i pliku tekstowego
+	//zwiêkszenie numeru nqawy w pliku graficznym i tekstowym
 	if(graphicfile[dl_grafika-6]=='9'&&graphicfile[dl_grafika-5]=='9'){graphicfile[dl_grafika-7]++;graphicfile[dl_grafika-6]='0';graphicfile[dl_grafika-5]='0'-1;}	
 	if(graphicfile[dl_grafika-5]=='9'){graphicfile[dl_grafika-6]++;graphicfile[dl_grafika-5]='0'-1;}
 	graphicfile[dl_grafika-5]++;
@@ -121,19 +133,17 @@ do{
 
 
 
-        liczbazmian=0;
-        ile_zywych=0;
+        how_many_change=0;
+        how_many_live=0;
     
         for(int i=0;i<y;i++)
         {
                 for(int j=0;j<x;j++)
                 {
-        
-                      int ile_s=ile_sasiadow(x,y,tab,i,j);
+                      int how_many_neighbourhood=check_neighbourhood(x,y,grid,i,j);
                                            
-                        if(tab[i][j]==0&&ile_s==3) {zmiana[i][j]=1;liczbazmian++;};
-                        if(tab[i][j]==1&&(ile_s<2||ile_s>3)){zmiana[i][j]=1;liczbazmian++;}
-			
+                        if(grid[i][j]==0&&how_many_neighbourhood==3) {change[i][j]=1;how_many_change++;};
+                        if(grid[i][j]==1&&(how_many_neighbourhood<2||how_many_neighbourhood>3)){change[i][j]=1;how_many_change++;}
                 }
         }
 
@@ -143,24 +153,26 @@ do{
                 for(int j=0;j<x;j++)
                 {
 
-                        if(zmiana[i][j]==1&&tab[i][j]==0) {tab[i][j]=1;zmiana[i][j]=0;}
-                        if(zmiana[i][j]==1&&tab[i][j]==1) {tab[i][j]=0;zmiana[i][j]=0;}
-                        if(tab[i][j]==1) ile_zywych++;
+                        if(change[i][j]==1&&grid[i][j]==0) {grid[i][j]=1;change[i][j]=0;}
+                        if(change[i][j]==1&&grid[i][j]==1) {grid[i][j]=0;change[i][j]=0;}
+                        if(grid[i][j]==1) how_many_live++;
                 }
         }
 
 	//wypisanie uk³adu komórek na konsoli
-    wypisz(x,y,tab);
-        
-	grafika(x,y,tab,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
-	tekst(x,y,tab,txtfile);
+    write(x,y,grid);
+    
+    //zapisanie uk³adu komórek do pliku graficznego i testowego
+	write_graphic(x,y,grid,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
+	write_txt(x,y,grid,txtfile);
 	
-	error_size(graphicfile[dl_grafika-7],graphicfile[dl_grafika-6],graphicfile[dl_grafika-5]);
+	//sprawdzenie czy zapisano maksymaln¹ mo¿liw¹ liczbê plików
+	error_size(graphicfile[dl_grafika-7],graphicfile[dl_grafika-6],graphicfile[dl_grafika-5],language);
 	
-	czekaj(0.25);
+	wait(0.25);
  	printf("\n\n\n\n");
     
-} while(liczbazmian>0&&ile_zywych>0);
+} while(how_many_change>0&&how_many_live>0);
 
 
 	return 0;
