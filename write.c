@@ -1,4 +1,5 @@
 #include<stdio.h>
+ #include"write.h"
  
 void write(int x,int y,int *grid[])
 {

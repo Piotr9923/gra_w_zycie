@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<ctype.h>
 #include<string.h>
-
+#include"errors.h"
 //funkcja zg³aszaj¹ca b³¹d, gdy plik wyjœciowy koñczy siê cyframi"999", co jest maksymaln¹ liczb¹ plików wyjœciowych
 void error_size(char a, char b,char c,int language)
 {
@@ -100,9 +100,9 @@ void error_number_size(char*name,int number,int min, int mak,int language)
 	if(number<min||number>mak)
 	{
 		if(language==0)printf("In %s number is not an element of interval <%d,%d>!!",name,min,mak);
-		if(language==1)printf("W %s podana liczba nie nalezy do przedzia³u <%d,%d>!!",name,min,mak);
+		if(language==1)printf("W %s podana liczba nie nalezy do przedzialu <%d,%d>!!",name,min,mak);
 		if(language==2)printf("Im %s Zahl ist kein intervall Element <%d,%d>!!",name,min,mak);
-		if(language==3)printf("En %s nombre n'est pas un élément de l'intervalle!!",name,min,mak);
+		if(language==3)printf("En %s nombre n\'est pas un élément de l\'intervalle <%d,%d>!!",name,min,mak);
 		if(language==4)printf("In %s numero non e un elemento di intervallo <%d,%d>!!",name,min,mak);
 		if(language==5)printf("En %s numero no es un elemento de intervalo <%d,%d>!!",name,min,mak);
 		exit(0);
@@ -115,12 +115,12 @@ int error_point_size(int number,int maxx,int maxy,int x,int y,int language)
 	
 	if(x<1||y<1||x>maxx||y>maxy)
 	{
-		if(language==0)printf("Point %d.: (%d,%d) is not an element of interval  x=<1,%d>, y=<1,%d>. It was not loaded!!\n",number,x,y,maxx,maxy);
-		if(language==1)printf("Punkt %d. posiada wsporzedne (%d,%d), ktore nie naleza do przdzialu x=<1,%d>, y=<1,%d>. Nie zostal wczytany!!\n",number,x,y,maxx,maxy);
-		if(language==2)printf("Punkt %d.: (%d,%d) ist kein intervall Element x=<1,%d>, y=<1,%d>. Es war nicht geladen!! ");
-		if(language==3)printf("Le point %d.: (%d,%d) n'est pas un élément de l'intervalle x=<1,%d>, y=<1,%d>. Il n'a pas ete charge!!");
-		if(language==4)printf("Il punto %d.: (%d,%d) non e un elemento di intervallo x=<1,%d>, y=<1,%d>. Non e stato caricato!!");
-		if(language==5)printf("El punto %d.: (%d,%d) numero no es un elemento de intervalo x=<1,%d>, y=<1,%d>. No estaba cargada!!");
+		if(language==0)printf("Point %d.: (%d,%d) is not an element of interval:  x=<1,%d>, y=<1,%d>. It was not loaded!!\n",number,x,y,maxx,maxy);
+		if(language==1)printf("Punkt %d. posiada wsporzedne (%d,%d), ktore nie naleza do przdzialu: x=<1,%d>, y=<1,%d>. Nie zostal wczytany!!\n",number,x,y,maxx,maxy);
+		if(language==2)printf("Punkt %d.: (%d,%d) ist kein intervall Element: x=<1,%d>, y=<1,%d>. Es war nicht geladen!! ",number,x,y,maxx,maxy);
+		if(language==3)printf("Le point %d.: (%d,%d) n'est pas un élément de l'intervalle: x=<1,%d>, y=<1,%d>. Il n'a pas ete charge!!",number,x,y,maxx,maxy);
+		if(language==4)printf("Il punto %d.: (%d,%d) non e un elemento di intervallo: x=<1,%d>, y=<1,%d>. Non e stato caricato!!",number,x,y,maxx,maxy);
+		if(language==5)printf("El punto %d.: (%d,%d) numero no es un elemento de intervalo: x=<1,%d>, y=<1,%d>. No estaba cargada!!",number,x,y,maxx,maxy);
 	
 		return 1;
 	}
