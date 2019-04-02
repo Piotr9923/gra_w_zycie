@@ -40,7 +40,7 @@ check_language(argv,&language,argc);
 //sprawdzenie czy u¿ytkownik poda³ ustawienia i wczytanie ich
 check_gridsize(&x,&y,argv,argc,language);
 check_graphicsettings(&pixel_size,&lred,&lblue,&lgreen,&dred,&dblue,&dgreen,argv,argc,language);
-check_filenames(&filename,&graphicfile,&txtfile,&is_filename,&is_graphicname,&is_txtname,argv,argc);
+check_filenames(&filename,&graphicfile,&txtfile,&is_filename,&is_graphicname,&is_txtname,argv,argc,language);
 
 
 
@@ -134,7 +134,7 @@ do{
 
 	//wypisanie uk³adu komórek na konsoli
     write(x,y,grid);
-    
+
     //zapisanie uk³adu komórek do pliku graficznego i testowego
 	write_graphic(x,y,grid,pixel_size,graphicfile,lred,lgreen,lblue,dred,dgreen,dblue);
 	write_txt(x,y,grid,txtfile);

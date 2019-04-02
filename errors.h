@@ -16,4 +16,6 @@ void error_number_size(char*name,int number,int min, int mak,int language);
 
 int error_point_size(int number,int maxx,int maxy,int x,int y,int language);
 
+void error_falgargument(char*flagname,int language);
+
 #endif

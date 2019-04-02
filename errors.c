@@ -126,3 +126,17 @@ int error_point_size(int number,int maxx,int maxy,int x,int y,int language)
 	}
 		return 0;
 }
+
+
+void error_falgargument(char*flagname,int language)
+{
+		if(language==0)printf("After %s you did not enter the vlaue!!",flagname);
+		if(language==1)printf("Po argumencie %s nie podales wartosci!!",flagname);
+		if(language==2)printf("Nach dem %s Sie haben den Wert nicht eingegeben!!",flagname);
+		if(language==3)printf("Apres %s vous n'avez pas entre de valeur!!",flagname);
+		if(language==4)printf("After %s non hai inserito un valore!!",flagname);
+		if(language==5)printf("Después de la %s No has introducido un valor!!",flagname);
+		 	
+		 	exit(0);
+}
+
