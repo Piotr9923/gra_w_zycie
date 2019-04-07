@@ -20,12 +20,14 @@ void check_language(char*argv[],int*language,int argc)
 	
 }
 
-void check_gridsize(int*x,int*y,char*argv[],int argc,int language)
+void check_gridsize(int*x,int*y,int*generation_number,char*argv[],int argc,int language)
 {
 		for(int i=1;i<argc;i++)
 	{
 		if(strcmp(argv[i],"--x")==0) {if(i+1>=argc)error_falgargument("--x",language);error_number("--x",argv[i+1],language);error_number_size("--x",atoi(argv[i+1]),1,100,language);*x=atoi(argv[i+1]);}
 		if(strcmp(argv[i],"--y")==0) {if(i+1>=argc)error_falgargument("--y",language);error_number("--y",argv[i+1],language);error_number_size("--y",atoi(argv[i+1]),1,100,language);*y=atoi(argv[i+1]);}
+		if(strcmp(argv[i],"--generations")==0) {if(i+1>=argc)error_falgargument("--generation",language);error_number("--generation",argv[i+1],language);*generation_number=atoi(argv[i+1]);}
+
 	}
 	
 }
@@ -54,14 +56,16 @@ void check_graphicsettings(int*pixel_size,int*lred,int*lblue,int*lgreen,int*dred
 }
 
 
-void check_filenames(char**filename,char**graphicfile,char**txtfile,int*is_filename,int*is_graphicname,int*is_txtname,char*argv[],int argc,int language)
+void check_filenames(char**filename,char**graphicfile,char**txtfile,int*is_graphicname,int*is_txtname,char*argv[],int argc,int language)
 {
+	int is_filename=0;
 	for(int i=1;i<argc;i++)
 	{
-		if(strcmp(argv[i],"--filename")==0) {if(i+1>=argc)error_falgargument("--filename",language);*filename=argv[i+1];*is_filename=1;}
+		if(strcmp(argv[i],"--filename")==0) {if(i+1>=argc)error_falgargument("--filename",language);*filename=argv[i+1];is_filename=1;}
 		if(strcmp(argv[i],"--graphicfile")==0) {if(i+1>=argc)error_falgargument("--graphicfile",language);*graphicfile=argv[i+1];*is_graphicname=1;}
 		if(strcmp(argv[i],"--txtfile")==0){if(i+1>=argc)error_falgargument("--txtfile",language);*txtfile=argv[i+1];*is_txtname=1;}	
 	}
 
-	
+	if(is_filename==0) error_nofilename(language);//sprawdzenie czy u¿ytkownik poda³ plik z danymi
+
 }

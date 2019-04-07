@@ -3,20 +3,6 @@
 #include<ctype.h>
 #include<string.h>
 #include"errors.h"
-//funkcja zg³aszaj¹ca b³¹d, gdy plik wyjœciowy koñczy siê cyframi"999", co jest maksymaln¹ liczb¹ plików wyjœciowych
-void error_size(char a, char b,char c,int language)
-{
-	if(a=='9'&&b=='9'&&c=='9')
-	{
-		if(language==0)printf("The program can not write more cells, so ending its action!!\n");
-		if(language==1)printf("Program nie moze zapisac wiecej ukladow komorek wiec konczy swoje dzialanie!!\n");
-		if(language==2)printf("Das Programm kann nicht mehr Zellen schreiben und damit seine Aktion beenden!!\n");
-		if(language==3)printf("Le programme ne peut pas ecrire plus de cellules, mettant ainsi fin a son action!!\n");
-		if(language==4)printf("Il programma non puo scrivere piu celle, quindi termina la sua azione!!\n");
-		if(language==5)printf("El programa no puede escribir mas celdas, por lo que finaliza su accion!!\n");
-		exit(0);
-	}
-}
 
 //funkcja zg³aszaj¹ca b³¹d, gdy podana wartoœæ powinna byæ liczb¹, a ni¹ nie jest
 void error_number(char*flagname,char*number,int language)
