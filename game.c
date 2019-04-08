@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include"file_writer.h"
-#include"write.h"
+#include"writer.h"
 #include"settings.h"
 #include"change.h"
 #include"game.h"
@@ -28,7 +28,7 @@ void game(int x,int y,int pixel_size,int lred,int lgreen,int lblue,int dred,int 
 	
 
 	do{
-		//zwiêkszenie numeru nazwy w pliku graficznym i tekstowym
+		//zwiekszenie numeru nazwy w pliku graficznym i tekstowym
 		
 
         how_many_change=0;
@@ -37,7 +37,7 @@ void game(int x,int y,int pixel_size,int lred,int lgreen,int lblue,int dred,int 
     sprintf(graphic,"%s%d.ppm",graphicfile,generation_number);
 	sprintf(txt,"%s%d.txt",txtfile,generation_number);
     	
-    	//oznaczenie komórek których stan siê zmienia
+    	//oznaczenie komórek których stan sie zmienia
     	check_cellstochange(x,y,grid,change,&how_many_change);
     	
     	//zmiana stanów komórek
@@ -46,10 +46,10 @@ void game(int x,int y,int pixel_size,int lred,int lgreen,int lblue,int dred,int 
     	
        
 
-		//wypisanie uk³adu komórek na konsoli
+		//wypisanie uk3adu komórek na konsoli
     	write(x,y,grid);
 
-    	//zapisanie uk³adu komórek do pliku graficznego i testowego
+    	//zapisanie uk3adu komórek do pliku graficznego i testowego
 		write_graphic(x,y,grid,pixel_size,graphic,lred,lgreen,lblue,dred,dgreen,dblue);
 		write_txt(x,y,grid,txt);
 	
@@ -65,4 +65,4 @@ void game(int x,int y,int pixel_size,int lred,int lgreen,int lblue,int dred,int 
 	
 	
 	
-}	
+} 

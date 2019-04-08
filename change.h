@@ -1,9 +1,9 @@
 #ifndef _CHANGE_
-#define _CHANGE
+#define _CHANGE_
 
-void check_aimtochange(int x,int y, int*grid[],int*change[],int*how_many_change);
+void check_cellstochange(int x,int y, int*grid[],int*change[],int*how_many_change);
 
-void change_aims(int x,int y, int*grid[],int*change[],int*how_many_live);
+void change_cells(int x,int y, int*grid[],int*change[],int*how_many_live);
 
 #endif
 

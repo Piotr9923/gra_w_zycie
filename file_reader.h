@@ -3,6 +3,6 @@
 #include"file_reader.h"
 #include"errors.h"
 
-void read_file(int x,int y,int *grid[],char* name,int language);
+void read_file(int x,int y,int *grid[],char* name);
 
 #endif

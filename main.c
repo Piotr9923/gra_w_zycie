@@ -4,10 +4,12 @@
 #include<ctype.h>
 #include<windows.h>
 
+#include "file_reader.h"
+#include "settings.h"
+#include "game.h"
+#include"main.h"
 
-#include"file_reader.h"
-#include"settings.h"
-#include"game.h"
+enum GRID **grid1;
 
 int main(int argc, char *argv[]) 
 {
@@ -20,23 +22,20 @@ char* graphicfile=name_graphic;	// nazwa pliku do którego zapisujemy grafikê
 char name_txt[]="cells";
 char* txtfile=name_txt;	//nazwa pliku do którego zapisujemy uk³ad komórek
 
-int is_graphicname=0; 	//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku graficzengo
-int is_txtname=0;//zmienna pomocnicza sprawdzaj¹ca czy u¿ytkownik poda³ nazwê wyjœciowego pliku tekstowego
-
 int lred=0,lgreen=0,lblue=0; //kolory ¿ywych komórek w modelu RGB
 int dred=255,dgreen=255,dblue=255;//kolory martwych komórek w modelu RGB
-int is_filename=0;//zmienna pomocnicza, która wskazuje czy zosta³ podany plik
-int language=0;//zmienna wskazuj¹ca wybrany jêzyk domyœlanie angielski(wartoœæ 0)
+
 int N=1000;//liczba generacji
 
 
-//sprawdzenie czy u¿ytkownik wybra³ jêzyk. Jeœli tak to zmiana zmiennej wskazuj¹cej na jêzyk(0-angielski,1-polski,2-niemiecki,3-francuski,4-w³oski,5-hiszpañski)
-check_language(argv,&language,argc);
+
+//sprawdzenie czy u¿ytkownik wybra³ jêzyk. 
+check_language(argv,argc);
 
 //sprawdzenie czy u¿ytkownik poda³ ustawienia i wczytanie ich
-check_gridsize(&x,&y,&N,argv,argc,language);
-check_graphicsettings(&pixel_size,&lred,&lblue,&lgreen,&dred,&dblue,&dgreen,argv,argc,language);
-check_filenames(&filename,&graphicfile,&txtfile,&is_graphicname,&is_txtname,argv,argc,language);
+check_gridsize(&x,&y,&N,argv,argc);
+check_graphicsettings(&pixel_size,&lred,&lblue,&lgreen,&dred,&dblue,&dgreen,argv,argc);
+check_filenames(&filename,&graphicfile,&txtfile,argv,argc);
 
 
 
@@ -66,7 +65,7 @@ for(int i=0;i<y;i++)
 
 
 //wczytywanie danych z pliku o nazwie podanej przez u¿ytkownika
-read_file(x,y,grid,filename,language);
+read_file(x,y,grid,filename);
 
 //funkcja opóŸniaj¹ca, aby u¿ytkownik móg³ przeczytaæ informacjê o ewentualnych b³êdach
 Sleep(5.0);
@@ -76,9 +75,9 @@ system("mkdir results");
 game(x,y,pixel_size,lred,lgreen,lblue,dred,dgreen,dblue,N,grid,change,txtfile,graphicfile);
 
 
-
 free(grid);
 free(change);
+
 
 	return 0;
 }

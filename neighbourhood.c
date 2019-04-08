@@ -1,6 +1,6 @@
 #include"neighbourhood.h"
 
-int check_neighbourhood(int x,int y ,int *grid[], int x1 ,int y1)
+int check_neighbourhood(int x,int y ,int *grid[], int y1 ,int x1)
 {
 		int how_many_live_neighbourhood=0;
  
