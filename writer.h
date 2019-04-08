@@ -1,5 +1,5 @@
-#ifndef _WRITE_
-#define _WRITE_
+#ifndef _WRITER_
+#define _WRITER_
 
 void write(int x,int y,int *grid[]);
 

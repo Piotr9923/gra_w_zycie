@@ -1,7 +1,6 @@
 #ifndef _NEIG_
 #define _NEIG_
-#include"neighbourhood.h"
 
-int check_neighbourhood(int x,int y ,int *grid[], int x1 ,int y1);
+int check_neighbourhood(int width,int height ,int *grid[], int x, int y);
 
 #endif
