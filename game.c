@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include"file_writer.h"
-#include"writer.h"
+#include"write.h"
 #include"settings.h"
 #include"change.h"
 #include"game.h"

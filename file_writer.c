@@ -9,12 +9,11 @@
         const int dimy = y;
         int i, j;
         
-        char path[100]="./results/";
+         char path[100]="./results/";
         char* path_pointer=path;
         
         strcat(path_pointer,name);
         
-         
         FILE * fp = fopen(path, "wb"); /* b - tryb binarny */
         fprintf(fp, "P6\n%d %d\n255\n", dimx*size, dimy*size);
     
@@ -46,13 +45,12 @@
  
  void write_txt(int x,int y,int *grid[], char* name)
  {
- 	
  		char path[100]="./results/";
         char* path_pointer=path;
         
         strcat(path_pointer,name);
         
-
+        
  	FILE *fp=fopen(path,"w");
  	
  	for(int j=0;j<x;j++)
