@@ -1,27 +1,27 @@
 #include<stdio.h>
 #include "writer.h"
  
-void write(int x,int y,int *grid[])
+void write(int width,int height,int *grid[])
 {
 	printf("\n");
     printf(" ");
-	for(int i=0;i<x*2;i++) printf("-");
+	for(int i=0;i<width*2;i++) printf("-");
 	printf("\n");
 	
-	for(int i=0;i<y;i++)
+	for(int i=0;i<height;i++)
 	{
-        for(int j=0;j<x;j++)
+        for(int j=0;j<width;j++)
         {
         
             if(j==0) printf("|");
             if(grid[i][j]==1)printf("X ");
         	else printf("  ");
-            if(j==x-1) printf("|");
+            if(j==width-1) printf("|");
         }
         printf("\n");
 	}
 	
 	printf(" ");
-	for(int i=0;i<x*2;i++) printf("-");
+	for(int i=0;i<width*2;i++) printf("-");
     for(int i1=0;i1<10;i1++) printf("\n");
 }

@@ -3,8 +3,9 @@
 #include<string.h>
 #include "errors.h"
 #include "file_reader.h"
+#include "settings.h"
 
-void read_file(int width,int height,int *grid[],char* name)
+void read_file(SET setting,int *grid[],char* name)
 {
 	//otworzenie pliku z danymi
 	FILE *fp=fopen(name,"r");
@@ -20,10 +21,10 @@ void read_file(int width,int height,int *grid[],char* name)
 	{
 		//sprawdzenie czy punkt jest liczb¹ oraz czy jego wartoœci nale¿¹ do rozmiarów planszy. Jeœli któryœ b³êdny warunek zostanie spe³niony, to omijamy wczytywanie za pomoc¹ "goto"
 		if(error_point(point_number,x,y)==1) goto next;
-		if(error_point_size(point_number, width, height, atoi(x), atoi(y))==1) goto next;
+		if(error_point_size(point_number, setting.width, setting.height, atoi(x), atoi(y))==1) goto next;
 		
 		//wczytywanie punktu do planszy
-		grid[height-atoi(y)][atoi(x)-1]=1;
+		grid[setting.height-atoi(y)][atoi(x)-1]=1;
 
 		next:
 		point_number++;

@@ -1,8 +1,8 @@
 #ifndef _GAME_
 #define _GAME_
+#include "settings.h"
 
-
-void game(int x,int y,int pixel_size,int lred,int lgreen,int lblue,int dred,int dgreen,int dblue,int N,int*grid[],int*change[],char*txtfile,char*graphicfile);
+void game(SET setting,int*grid[],int*change[]);
 
 
 #endif

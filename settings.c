@@ -6,7 +6,6 @@
 
 //stworzenie zmiennej globalnej wskazuj¹cej jêzyk i ustawienie jej jako wartoœæ domyœlna (j. angielski)
 enum L language=en;
-
 //sprawdzenie czy u¿ytkownik wybra³ jêzyk
 void check_language(char*argv[],int argc)
 {
@@ -26,29 +25,29 @@ void check_language(char*argv[],int argc)
 
 
 //sprawdzenie czy u¿ytkownik poda³ wymiary planszy oraz iloœæ generacji
-void check_gridsize(int*x,int*y,int*N,char*argv[],int argc)
+void check_gridsize(SET*setting_pointer,char*argv[],int argc)
 {
 	for(int i=1;i<argc;i++)
 	{
-		if(strcmp(argv[i],"--width")==0) {if(i+1>=argc)error_falgargument("--x");error_number("--x",argv[i+1]);error_number_size("--x",atoi(argv[i+1]),1,100);*x=atoi(argv[i+1]);}
-		if(strcmp(argv[i],"--height")==0) {if(i+1>=argc)error_falgargument("--y");error_number("--y",argv[i+1]);error_number_size("--y",atoi(argv[i+1]),1,100);*y=atoi(argv[i+1]);}
-		if(strcmp(argv[i],"--N")==0) {if(i+1>=argc)error_falgargument("--N");error_number("--N",argv[i+1]);*N=atoi(argv[i+1]);}
+		if(strcmp(argv[i],"--width")==0) {if(i+1>=argc)error_falgargument("--width");error_number("--width",argv[i+1]);error_number_size("--width",atoi(argv[i+1]),1,100);setting_pointer->width=atoi(argv[i+1]);}
+		if(strcmp(argv[i],"--height")==0) {if(i+1>=argc)error_falgargument("--height");error_number("--height",argv[i+1]);error_number_size("--height",atoi(argv[i+1]),1,100);setting_pointer->height=atoi(argv[i+1]);}
+		if(strcmp(argv[i],"--N")==0) {if(i+1>=argc)error_falgargument("--N");error_number("--N",argv[i+1]);setting_pointer->N=atoi(argv[i+1]);}
 	}
 }
 
 
 //sprawdzenie czy u¿ytkownik poda³ ustawienia grafiki: rozmiar pikseli, kolory ¿ywych i martwych komórek
-void check_graphicsettings(int*pixel_size,int*lred,int*lblue,int*lgreen,int*dred,int*dblue,int*dgreen,char*argv[],int argc)
+void check_graphicsettings(SET*setting_pointer,char*argv[],int argc)
 {
 	for(int i=1;i<argc;i++)
 	{
-		if(strcmp(argv[i],"--pixelsize")==0) {if(i+1>=argc)error_falgargument("--pixelsize");error_number("--pixelsize",argv[i+1]);*pixel_size=atoi(argv[i+1]);}
+		if(strcmp(argv[i],"--pixelsize")==0) {if(i+1>=argc)error_falgargument("--pixelsize");error_number("--pixelsize",argv[i+1]);setting_pointer->pixel_size=atoi(argv[i+1]);}
 		if(strcmp(argv[i],"--livecolor")==0)
 		{
 			if(i+3>=argc)error_falgargument("--livecolor");
 			error_number("--livecolor",argv[i+1]);error_number("--livecolor",argv[i+2]);error_number("--livecolor",argv[i+3]);
 			error_number_size("--livecolor",atoi(argv[i+1]),0,255);error_number_size("--livecolor",atoi(argv[i+2]),0,255);error_number_size("--livecolor",atoi(argv[i+3]),0,255);
-			*lred=atoi(argv[i+1]);*lblue=atoi(argv[i+2]);*lgreen=atoi(argv[i+3]);
+			setting_pointer->lred=atoi(argv[i+1]);setting_pointer->lblue=atoi(argv[i+2]);setting_pointer->lgreen=atoi(argv[i+3]);
 		}
 	
 		if(strcmp(argv[i],"--deadcolor")==0)
@@ -56,22 +55,22 @@ void check_graphicsettings(int*pixel_size,int*lred,int*lblue,int*lgreen,int*dred
 			if(i+3>=argc)error_falgargument("--deadcolor");
 			error_number("--deadcolor",argv[i+1]);error_number("--deadcolor",argv[i+2]);error_number("--deadcolor",argv[i+3]);
 			error_number_size("--deadcolor",atoi(argv[i+1]),0,255);error_number_size("--deadcolor",atoi(argv[i+2]),0,255);error_number_size("--deadcolor",atoi(argv[i+3]),0,255);
-			*dred=atoi(argv[i+1]);*dblue=atoi(argv[i+2]);*dgreen=atoi(argv[i+3]);
+			setting_pointer->dred=atoi(argv[i+1]);setting_pointer->dblue=atoi(argv[i+2]);setting_pointer->dgreen=atoi(argv[i+3]);
 		}	
 	}
 }
 
 
 //sprawdzenie czy u¿ytkownik poda³ nazwy plików: z danymi oraz wynikowych
-void check_filenames(char**filename,char**graphicfile,char**txtfile,char*argv[],int argc)
+void check_filenames(char**filename,SET*setting_pointer,char*argv[],int argc)
 {
 	int is_filename=0;//zmienna pomocnicza, która wskazuje czy zosta³ podany plik
 
 	for(int i=1;i<argc;i++)
 	{
 		if(strcmp(argv[i],"--filename")==0) {if(i+1>=argc)error_falgargument("--filename");*filename=argv[i+1];is_filename=1;}
-		if(strcmp(argv[i],"--graphicfile")==0) {if(i+1>=argc)error_falgargument("--graphicfile");*graphicfile=argv[i+1];}
-		if(strcmp(argv[i],"--txtfile")==0){if(i+1>=argc)error_falgargument("--txtfile");*txtfile=argv[i+1];}	
+		if(strcmp(argv[i],"--graphicfile")==0) {if(i+1>=argc)error_falgargument("--graphicfile");setting_pointer->graphicfile=argv[i+1];}
+		if(strcmp(argv[i],"--txtfile")==0){if(i+1>=argc)error_falgargument("--txtfile");setting_pointer->txtfile=argv[i+1];}	
 	}
 
 	if(is_filename==0) error_nofilename();//sprawdzenie czy u¿ytkownik poda³ plik z danymi

@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include<string.h>
 #include "file_writer.h"
+#include "settings.h"
 
- void write_graphic(int x,int y,int *grid[],int size,char*name, int lr,int lg,int lb,int dr,int dg,int db) {
+ void write_graphic(SET setting,int *grid[],char*name) 
+ {
  	
 	
-    const int dimx = x; 
-	const int dimy = y;
+    const int dimx = setting.width; 
+	const int dimy = setting.height;
 	int i, j;
-        
+    int size=setting.pixel_size;
     char path[100]="./results/";
     char* path_pointer=path;
         
@@ -27,15 +29,15 @@
         		static unsigned char color[3];
                 if(grid[j][i]==1)
                 {
-                	color[0]=lr; /* red-czerwony */
-                    color[1]=lg; /* green-zielony */
-                    color[2]=lb; /* blue-niebieski */
+                	color[0]=setting.lred; /* red-czerwony */
+                    color[1]=setting.lgreen; /* green-zielony */
+                    color[2]=setting.lblue; /* blue-niebieski */
                 }
                 else
                 {
-                    color[0]=dr; /* red-czerwony */
-                    color[1]=dg; /* green-zielony */
-                    color[2]=db; /* blue-niebieski */
+                    color[0]=setting.dred; /* red-czerwony */
+                    color[1]=setting.dgreen; /* green-zielony */
+                    color[2]=setting.dblue; /* blue-niebieski */
                 }
                 for(int p2=0;p2<size;p2++)fwrite(color,1,3,fp);
             }
@@ -45,7 +47,7 @@
  }
  
  
- void write_txt(int x,int y,int *grid[], char* name)
+ void write_txt(SET setting,int *grid[], char* name)
  {
  	char path[100]="./results/";
     char* path_pointer=path;
@@ -55,10 +57,10 @@
         
  	FILE *fp=fopen(path,"w");
  	
- 	for(int j=0;j<x;j++)
- 		for(int i=y-1;i>=0;i--)
+ 	for(int x=0;x<setting.width;x++)
+ 		for(int y=setting.height-1;y>=0;y--)
  		{
- 			if(grid[i][j]==1) fprintf(fp,"%d %d\n",j+1,y-i);
+ 			if(grid[y][x]==1) fprintf(fp,"%d %d\n",x+1,setting.height-y);
 		}
  	fclose(fp);
  }
