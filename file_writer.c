@@ -3,7 +3,7 @@
 #include "file_writer.h"
 #include "settings.h"
 
- void write_graphic(SET setting,int *grid[],char*name) 
+ void write_graphic(SET setting,GRID *grid[],char*name) 
  {
  	
 	
@@ -27,7 +27,7 @@
         	for(i=0; i<dimx; ++i)
 			{         
         		static unsigned char color[3];
-                if(grid[j][i]==1)
+                if(grid[j][i]==YES)
                 {
                 	color[0]=setting.lred; /* red-czerwony */
                     color[1]=setting.lgreen; /* green-zielony */
@@ -47,7 +47,7 @@
  }
  
  
- void write_txt(SET setting,int *grid[], char* name)
+ void write_txt(SET setting,GRID *grid[], char* name)
  {
  	char path[100]="./results/";
     char* path_pointer=path;
@@ -60,7 +60,7 @@
  	for(int x=0;x<setting.width;x++)
  		for(int y=setting.height-1;y>=0;y--)
  		{
- 			if(grid[y][x]==1) fprintf(fp,"%d %d\n",x+1,setting.height-y);
+ 			if(grid[y][x]==YES) fprintf(fp,"%d %d\n",x+1,setting.height-y);
 		}
  	fclose(fp);
  }

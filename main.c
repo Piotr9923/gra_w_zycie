@@ -28,17 +28,17 @@ int main(int argc, char *argv[])
 	check_filenames(&filename,setting_pointer,argv,argc);
 
 
-
-	int **grid,**change;			//grid- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    chenge tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
+	GRID **grid;
+	CHANGE **change;			//grid- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    chenge tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
 
 	//alokacja pamiêci dla tablic
-	grid=malloc(sizeof(int*)*setting.height);
-	change=malloc(sizeof(int*)*setting.height);	
+	grid=malloc(sizeof(GRID*)*setting.height);
+	change=malloc(sizeof(CHANGE*)*setting.height);	
 
 	for(int i=0;i<setting.height;++i)
 	{
-		grid[i]=malloc(sizeof(int)*setting.width);
-		change[i]=malloc(sizeof(int)*setting.width);
+		grid[i]=malloc(sizeof(GRID)*setting.width);
+		change[i]=malloc(sizeof(CHANGE)*setting.width);
 	}
 	//koniec alokacji pamiêci
 
@@ -47,8 +47,8 @@ int main(int argc, char *argv[])
 		{
     	    for(int j=0;j<setting.width;j++)
     	    {
-                grid[i][j]=0;
-                change[i][j]=0;
+                grid[i][j]=DEAD;
+                change[i][j]=NO;
     	    }
 	}
 
@@ -61,7 +61,13 @@ int main(int argc, char *argv[])
 	
 	
 	game(setting,grid,change);
-
+	
+	//zwolnienie pamiêci
+	for(int i=0;i<setting.height;++i)
+	{
+		free(grid[i]);
+		free(change[i]);
+	}
 	free(grid);
 	free(change);
 

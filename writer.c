@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include "writer.h"
  
-void write(int width,int height,int *grid[])
+void write(int width,int height,GRID *grid[])
 {
 	printf("\n");
     printf(" ");
@@ -14,7 +14,7 @@ void write(int width,int height,int *grid[])
         {
         
             if(j==0) printf("|");
-            if(grid[i][j]==1)printf("X ");
+            if(grid[i][j]==YES)printf("X ");
         	else printf("  ");
             if(j==width-1) printf("|");
         }

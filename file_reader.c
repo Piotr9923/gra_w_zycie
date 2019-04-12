@@ -5,7 +5,7 @@
 #include "file_reader.h"
 #include "settings.h"
 
-void read_file(SET setting,int *grid[],char* name)
+void read_file(SET setting,GRID *grid[],char* name)
 {
 	//otworzenie pliku z danymi
 	FILE *fp=fopen(name,"r");
@@ -24,7 +24,7 @@ void read_file(SET setting,int *grid[],char* name)
 		if(error_point_size(point_number, setting.width, setting.height, atoi(x), atoi(y))==1) goto next;
 		
 		//wczytywanie punktu do planszy
-		grid[setting.height-atoi(y)][atoi(x)-1]=1;
+		grid[setting.height-atoi(y)][atoi(x)-1]=YES;
 
 		next:
 		point_number++;

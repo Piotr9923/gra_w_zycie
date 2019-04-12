@@ -5,7 +5,7 @@
 #include "change.h"
 #include "game.h"
 
-void game(SET setting,int*grid[],int*change[])
+void game(SET setting,GRID *grid[],CHANGE*change[])
 {
 	
 	

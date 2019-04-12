@@ -47,7 +47,7 @@ void error_nofilename()
 //funkcja zg³aszaj¹ca b³¹d, gdy nie mo¿na otworzyæ pliku z danymi
 void error_nofoundfile(char*name)
 {
-	if(language==en)printf("I can not open the file: %s!!",name);
+	if(language==en)printf("I can not open the file: %s!!\n",name);
 	if(language==pl)printf("Nie moge otworzyc pliku o nazwie: %s!\n!",name);
 	if(language==de)printf("Ich kann die Datei nicht offnen: %s!!\n",name);
 	if(language==fr)printf("Je ne peux pas ouvrir le fichier: %s!!\n",name);

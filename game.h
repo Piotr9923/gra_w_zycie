@@ -2,7 +2,7 @@
 #define _GAME_
 #include "settings.h"
 
-void game(SET setting,int*grid[],int*change[]);
+void game(SET setting,GRID*grid[],CHANGE*change[]);
 
 
 #endif

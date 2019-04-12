@@ -5,7 +5,7 @@
 #include"errors.h"
 
 //stworzenie zmiennej globalnej wskazuj¹cej jêzyk i ustawienie jej jako wartoœæ domyœlna (j. angielski)
-enum L language=en;
+L language=en;
 //sprawdzenie czy u¿ytkownik wybra³ jêzyk
 void check_language(char*argv[],int argc)
 {
