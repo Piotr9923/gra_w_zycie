@@ -29,4 +29,5 @@ void read_file(SET setting,GRID *grid[],char* name)
 		next:
 		point_number++;
 	}
+	fclose(fp);
 }
