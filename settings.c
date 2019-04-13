@@ -4,9 +4,9 @@
 #include"settings.h"
 #include"errors.h"
 
-//stworzenie zmiennej globalnej wskazujπcej jÍzyk i ustawienie jej jako wartoúÊ domyúlna (j. angielski)
+//stworzenie zmiennej globalnej wskazujƒÖcej jƒôzyk i ustawienie jej jako warto≈õƒá domy≈õlna (j. angielski)
 L language=en;
-//sprawdzenie czy uøytkownik wybra≥ jÍzyk
+//sprawdzenie czy u≈ºytkownik wybra≈Ç jƒôzyk
 void check_language(char*argv[],int argc)
 {
 	if(argc>1&&strcmp(argv[1],"--language")==0) 
@@ -24,7 +24,7 @@ void check_language(char*argv[],int argc)
 }
 
 
-//sprawdzenie czy uøytkownik poda≥ wymiary planszy oraz iloúÊ generacji
+//sprawdzenie czy u≈ºytkownik poda≈Ç wymiary planszy oraz ilo≈õƒá generacji
 void check_gridsize(SET*setting_pointer,char*argv[],int argc)
 {
 	for(int i=1;i<argc;i++)
@@ -36,7 +36,7 @@ void check_gridsize(SET*setting_pointer,char*argv[],int argc)
 }
 
 
-//sprawdzenie czy uøytkownik poda≥ ustawienia grafiki: rozmiar pikseli, kolory øywych i martwych komÛrek
+//sprawdzenie czy u≈ºytkownik poda≈Ç ustawienia grafiki: rozmiar pikseli, kolory ≈ºywych i martwych kom√≥rek
 void check_graphicsettings(SET*setting_pointer,char*argv[],int argc)
 {
 	for(int i=1;i<argc;i++)
@@ -61,10 +61,10 @@ void check_graphicsettings(SET*setting_pointer,char*argv[],int argc)
 }
 
 
-//sprawdzenie czy uøytkownik poda≥ nazwy plikÛw: z danymi oraz wynikowych
+//sprawdzenie czy u≈ºytkownik poda≈Ç nazwy plik√≥w: z danymi oraz wynikowych
 void check_filenames(char**filename,SET*setting_pointer,char*argv[],int argc)
 {
-	int is_filename=0;//zmienna pomocnicza, ktÛra wskazuje czy zosta≥ podany plik
+	int is_filename=0;//zmienna pomocnicza, kt√≥ra wskazuje czy zosta≈Ç podany plik
 
 	for(int i=1;i<argc;i++)
 	{
@@ -73,5 +73,5 @@ void check_filenames(char**filename,SET*setting_pointer,char*argv[],int argc)
 		if(strcmp(argv[i],"--txtfile")==0){if(i+1>=argc)error_falgargument("--txtfile");setting_pointer->txtfile=argv[i+1];}	
 	}
 
-	if(is_filename==0) error_nofilename();//sprawdzenie czy uøytkownik poda≥ plik z danymi
+	if(is_filename==0) error_nofilename();//sprawdzenie czy u≈ºytkownik poda≈Ç plik z danymi
 }

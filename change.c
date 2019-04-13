@@ -1,38 +1,40 @@
 #include"change.h"
 #include"neighbourhood.h"
 
-//oznaczenie komÛrek do zmiany na podstawie ich stanu oraz iloúci sπsiadÛw
+//oznaczenie kom√≥rek do zmiany na podstawie ich stanu oraz ilo≈õci sƒÖsiad√≥w
 void check_cellstochange(int width,int height, GRID*grid[],CHANGE*change[],int*how_many_change)
 {
 	int how_many_change1=0; 
+	
 	for(int y=0;y<height;y++)
-    {
-        for(int x=0;x<width;x++)
-        {
-            int how_many_neighbourhood=check_neighbourhood(width,height,grid,y,x);
+    	{
+        	for(int x=0;x<width;x++)
+        	{
+            	int how_many_neighbourhood=check_neighbourhood(width,height,grid,y,x);
                                           
         	if(grid[y][x]==0&&how_many_neighbourhood==3) {change[y][x]=YES;how_many_change1++;};
-            if(grid[y][x]==1&&(how_many_neighbourhood<2||how_many_neighbourhood>3)){change[y][x]=YES;how_many_change1++;}
-        }
-    }
+            	if(grid[y][x]==1&&(how_many_neighbourhood<2||how_many_neighbourhood>3)){change[y][x]=YES;how_many_change1++;}
+        	}
+    	}
         *how_many_change=how_many_change1;
 }
 
 
-
+//zmiana stanu kom√≥rek
 void change_cells(int width,int height, GRID*grid[],CHANGE*change[],int*how_many_live,int*how_many_change)
 {
 	int how_many_live1=0;
 	int how_many_change1=0;
+	
 	for(int y=0;y<height;y++)
-    {
-        for(int x=0;x<width;x++)
-        {
-            if(change[y][x]==YES&&grid[y][x]==DEAD) {grid[y][x]=ALIVE;change[y][x]=NO;how_many_change1++;}
-            if(change[y][x]==YES&&grid[y][x]==ALIVE) {grid[y][x]=DEAD;change[y][x]=NO;how_many_change1++;}
-            if(grid[y][x]==ALIVE) how_many_live1++;
-        }
-    }
+    	{
+        	for(int x=0;x<width;x++)
+        	{
+            		if(change[y][x]==YES&&grid[y][x]==DEAD) {grid[y][x]=ALIVE;change[y][x]=NO;how_many_change1++;}
+            		if(change[y][x]==YES&&grid[y][x]==ALIVE) {grid[y][x]=DEAD;change[y][x]=NO;how_many_change1++;}
+            		if(grid[y][x]==ALIVE) how_many_live1++;
+        	}
+    	}
         *how_many_live=how_many_live1;
-		*how_many_change=how_many_change1;
+	*how_many_change=how_many_change1;
 }

@@ -9,65 +9,64 @@ void game(SET setting,GRID *grid[],CHANGE*change[])
 {
 	
 	
-	//tablice znaków bêd¹ce nazwami plików wynikowych
+	//tablice znakÃ³w bÄ™dÄ…ce nazwami plikÃ³w wynikowych
 	char graphic[30];
 	char txt[30];
-	//zmienna wskazuj¹ca numer generacji komórek
+	//zmienna wskazujÄ…ca numer generacji komÃ³rek
 	int generation_number=0;
 	
-	//tworzenie nazw plików
+	//tworzenie nazw plikÃ³w
 	sprintf(graphic,"%s%d.ppm",setting.graphicfile,generation_number);
 	sprintf(txt,"%s%d.txt",setting.txtfile,generation_number);
 	generation_number++;
 	
-	//wypisanie na konsolê oraz do plików pocz¹tkowego uk³adu komórek
+	//wypisanie na konsolÄ™ oraz do plikÃ³w poczÄ…tkowego ukÅ‚adu komÃ³rek
 	write(setting.width,setting.height,grid);
 	write_graphic(setting,grid,graphic);
 	write_txt(setting,grid,txt);
 
 
-	//zmienna wskazuj¹ca czy uk³ad komórek siê zmienia
+	//zmienna wskazujÄ…ca czy ukÅ‚ad komÃ³rek siÄ™ zmienia
 	int how_many_change=0;
 	
-	//zmienna wskazuj¹ca czy na planszy znajduj¹ sie ¿ywe komórki
+	//zmienna wskazujÄ…ca czy na planszy znajdujÄ… sie Å¼ywe komÃ³rki
 	int how_many_live=0;
     
 	
 
 	do{
 	
-        how_many_change=0;
-        how_many_live=0;
+  	      	how_many_change=0;
+  	      	how_many_live=0;
         
-        //towrzenie nazw plików
-   		sprintf(graphic,"%s%d.ppm",setting.graphicfile,generation_number);
+        	//towrzenie nazw plikÃ³w
+		sprintf(graphic,"%s%d.ppm",setting.graphicfile,generation_number);
 		sprintf(txt,"%s%d.txt",setting.txtfile,generation_number);
     	
-    	//oznaczenie komórek których stan sie zmienia
-    	check_cellstochange(setting.width,setting.height,grid,change,&how_many_change);
+    		//oznaczenie komÃ³rek ktÃ³rych stan sie zmienia
+    		check_cellstochange(setting.width,setting.height,grid,change,&how_many_change);
     	
-    	//zmiana stanów komórek
-    	change_cells(setting.width,setting.height,grid,change,&how_many_live,&how_many_change);
+    		//zmiana stanÃ³w komÃ³rek
+    		change_cells(setting.width,setting.height,grid,change,&how_many_live,&how_many_change);
 
     	
        
 
-		//wypisanie uk3adu komórek na konsoli
-    	write(setting.width,setting.height,grid);
+		//wypisanie uk3adu komÃ³rek na konsoli
+    		write(setting.width,setting.height,grid);
 
-    	//zapisanie uk3adu komórek do pliku graficznego i testowego
+    		//zapisanie uk3adu komÃ³rek do pliku graficznego i testowego
 		write_graphic(setting,grid,graphic);
 		write_txt(setting,grid,txt);
-	
-	
-	
+
+
  		printf("\n\n\n\n");
- 		//zwiêkszenie numeru generacji komórek
+ 		//zwiÄ™kszenie numeru generacji komÃ³rek
  		generation_number++;
     
-	} while(how_many_change>0&&how_many_live>0&&generation_number<setting.N);	/*pêtla bêdzie wykonywaæ siê dopóki zostan¹ spe³nione 3 warunki:
-																		**nast¹pi zmiana w uk³adu komórek na planszy
-																		**na planszy bêdzie znajdowaæ siê co najmniej jedna ¿ywa komórka
-																		**numer generacji bêdzie mniejszy ni¿ ¿¹dana iloœæ generacji przez u¿ytkownika
-																		*/
+	} while(how_many_change>0&&how_many_live>0&&generation_number<setting.N);	/*pÄ™tla bÄ™dzie wykonywaÄ‡ siÄ™ dopÃ³ki zostanÄ… speÅ‚nione 3 warunki:
+											**nastÄ…pi zmiana w ukÅ‚adu komÃ³rek na planszy
+											**na planszy bÄ™dzie znajdowaÄ‡ siÄ™ co najmniej jedna Å¼ywa komÃ³rka
+											**numer generacji bÄ™dzie mniejszy niÅ¼ Å¼Ä…dana iloÅ›Ä‡ generacji przez uÅ¼ytkownika
+											*/
 } 

@@ -9,7 +9,7 @@
 int main(int argc, char *argv[]) 
 {
 
-	/*ustawienie wartoœci domyœlnych dla zmiennych odpowiedzialnych za ustawienia*/
+	/*ustawienie wartoÅ›ci domyÅ›lnych dla zmiennych odpowiedzialnych za ustawienia*/
 	char* filename;   // nazwa pliku z danymi
 	char name_graphic[]="image";
 	char name_txt[]="cells";
@@ -19,19 +19,19 @@ int main(int argc, char *argv[])
 	SET* setting_pointer=&setting;
 
 
-	//sprawdzenie czy u¿ytkownik wybra³ jêzyk. Jeœli tak to zmiana zmiennej wskazuj¹cej na jêzyk(0-angielski,1-polski,2-niemiecki,3-francuski,4-w³oski,5-hiszpañski)
+	//sprawdzenie czy uÅ¼ytkownik wybraÅ‚ jÄ™zyk.
 	check_language(argv,argc);
 
-	//sprawdzenie czy u¿ytkownik poda³ ustawienia i wczytanie ich
+	//sprawdzenie czy uÅ¼ytkownik podaÅ‚ ustawienia i wczytanie ich
 	check_gridsize(setting_pointer,argv,argc);
 	check_graphicsettings(setting_pointer,argv,argc);
 	check_filenames(&filename,setting_pointer,argv,argc);
 
-
-	GRID **grid;
-	CHANGE **change;			//grid- tablica zawieraj¹ca liczby 0,1 które oznaczaj¹ stan komórek (1-¿ywa, 0-martwa)    chenge tablica w której bêdziemy oznaczaæ komórki do zmiany cyfr¹ 1
-
-	//alokacja pamiêci dla tablic
+	
+	GRID **grid;		//grid - tablica zawierajÄ…ca informacjÄ™ czy komÃ³rka jest Å¼ywa czy martwa
+	CHANGE **change;	//change - tablica zawierajÄ…ca infrmacjÄ™ czy dana komÃ³rka zmienia swÃ³j stan
+	
+	//alokacja pamiÄ™ci dla tablic
 	grid=malloc(sizeof(GRID*)*setting.height);
 	change=malloc(sizeof(CHANGE*)*setting.height);	
 
@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
 		grid[i]=malloc(sizeof(GRID)*setting.width);
 		change[i]=malloc(sizeof(CHANGE)*setting.width);
 	}
-	//koniec alokacji pamiêci
+	//koniec alokacji pamiÄ™ci
 
-	//ustawienie wartoœci tablic grid i change na 0
+	//ustawienie wartoÅ›ci tablic grid i change na domyÅ›lne
 	for(int i=0;i<setting.height;i++)
-		{
+	{
     	    for(int j=0;j<setting.width;j++)
     	    {
                 grid[i][j]=DEAD;
@@ -53,16 +53,16 @@ int main(int argc, char *argv[])
 	}
 
 
-	//wczytywanie danych z pliku o nazwie podanej przez u¿ytkownika
+	//wczytywanie danych z pliku o nazwie podanej przez uÅ¼ytkownika
 	read_file(setting,grid,filename);
 
-	//tworzenie folderu do którego bêd¹ zapisywane pliki wynikowe
+	//tworzenie folderu do ktÃ³rego bÄ™dÄ… zapisywane pliki wynikowe
 	system("mkdir results");
 	
 	
 	game(setting,grid,change);
 	
-	//zwolnienie pamiêci
+	//zwolnienie pamiÄ™ci
 	for(int i=0;i<setting.height;++i)
 	{
 		free(grid[i]);

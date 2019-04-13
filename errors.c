@@ -5,7 +5,7 @@
 #include "errors.h"
 #include "settings.h"
 
-//funkcja zg³aszaj¹ca b³¹d, gdy podana wartoœæ powinna byæ liczb¹, a ni¹ nie jest
+//funkcja zgÅ‚aszajÄ…ca bÅ‚Ä…d, gdy podana wartoÅ›Ä‡ powinna byÄ‡ liczbÄ…, a niÄ… nie jest
 void error_number(char*flagname,char*number)
 {
 	int dl=strlen(number);
@@ -20,16 +20,16 @@ void error_number(char*flagname,char*number)
 		if(language==en)printf("After %s you wrote %s. It is not a number!!\n",flagname,number);
 		if(language==pl)printf("Po argumencie %s podales wartosc %s, ktora nie jest liczba!!\n",flagname,number);
 		if(language==de)printf("Nach dem %s, du %s geschreiben. Es ist keine Nummer!!\n",flagname,number);
-		if(language==fr)printf("Apres %s tu as écrit %s. Ce n'est pas un chiffre!!\n",flagname,number);
+		if(language==fr)printf("Apres %s tu as Ã©crit %s. Ce n'est pas un chiffre!!\n",flagname,number);
 		if(language==it)printf("After %s Hai scritto %s. Non e un numero!!\n",flagname,number);
-		if(language==es)printf("Después de la %s que escribiste %s. No es un numero!!\n",flagname,number);
+		if(language==es)printf("DespuÃ©s de la %s que escribiste %s. No es un numero!!\n",flagname,number);
 		
 		exit(0);
 	}
 }
 
 
-//funkcja zg³aszaj¹ca b³¹d, gdy nie podano nazwy z plikiem danych
+//funkcja zgÅ‚aszajÄ…ca bÅ‚Ä…d, gdy nie podano nazwy z plikiem danych
 void error_nofilename()
 {
 	
@@ -44,7 +44,7 @@ void error_nofilename()
 }
 
 
-//funkcja zg³aszaj¹ca b³¹d, gdy nie mo¿na otworzyæ pliku z danymi
+//funkcja zgÅ‚aszajÄ…ca bÅ‚Ä…d, gdy nie moÅ¼na otworzyÄ‡ pliku z danymi
 void error_nofoundfile(char*name)
 {
 	if(language==en)printf("I can not open the file: %s!!\n",name);
@@ -58,7 +58,7 @@ void error_nofoundfile(char*name)
 }
 
 
-//funkcja sprawdzaj¹ca czy wspó³rzêdne punktu s¹ poprawne
+//funkcja sprawdzajÄ…ca czy wspÃ³Å‚rzÄ™dne punktu sÄ… poprawne
 int error_point(int number,char* a,char* b)
 {
 	int dl1=strlen(a);
@@ -73,7 +73,7 @@ int error_point(int number,char* a,char* b)
 		if(language==en)printf("Point %d. has incorrect coordinates: (%s,%s). It was not loaded!!\n",number,a,b);
 		if(language==pl)printf("Punkt %d. posiada bledne wsporzedne: (%s,%s), wiec nie zostal wczytany!!\n",number,a,b);
 		if(language==de)printf("Punkt %d. hat falsche Koordinaten: (%s,%s). Es war nicht geladen!!\n",number,a,b);
-		if(language==fr)printf("Le point %d. a des coordonnées incorrectes: (%s,%s). Il n'a pas ete charge!!\n",number,a,b);
+		if(language==fr)printf("Le point %d. a des coordonnÃ©es incorrectes: (%s,%s). Il n'a pas ete charge!!\n",number,a,b);
 		if(language==it)printf("Il punto %d. ha coordinate errate: (%s,%s). Non e stato caricato!!\n",number,a,b);
 		if(language==es)printf("El punto %d. tiene coordenadas incorrectas: (%s,%s). No estaba cargada!!\n",number,a,b);
 	
@@ -83,7 +83,7 @@ int error_point(int number,char* a,char* b)
 }
 
 
-//funkcja zg³aszaj¹ca b³¹d, gdy podana liczba nie nale¿y do mo¿liwego przedzia³u
+//funkcja zgÅ‚aszajÄ…ca bÅ‚Ä…d, gdy podana liczba nie naleÅ¼y do moÅ¼liwego przedziaÅ‚u
 void error_number_size(char*name,int number,int min, int mak)
 {
 	if(number<min||number>mak)
@@ -91,7 +91,7 @@ void error_number_size(char*name,int number,int min, int mak)
 		if(language==en)printf("In %s number is not an element of interval <%d,%d>!!\n",name,min,mak);
 		if(language==pl)printf("W %s podana liczba nie nalezy do przedzialu <%d,%d>!!\n",name,min,mak);
 		if(language==de)printf("Im %s Zahl ist kein intervall Element <%d,%d>!!\n",name,min,mak);
-		if(language==fr)printf("En %s nombre n\'est pas un élément de l\'intervalle <%d,%d>!!\n",name,min,mak);
+		if(language==fr)printf("En %s nombre n\'est pas un Ã©lÃ©ment de l\'intervalle <%d,%d>!!\n",name,min,mak);
 		if(language==it)printf("In %s numero non e un elemento di intervallo <%d,%d>!!\n",name,min,mak);
 		if(language==es)printf("En %s numero no es un elemento de intervalo <%d,%d>!!\n",name,min,mak);
 	
@@ -100,24 +100,24 @@ void error_number_size(char*name,int number,int min, int mak)
 }
 
 
-//funkcja zg³aszaj¹ca b³¹d, gdy któraœ ze wspó³rzêdnych punktu jest mniejsza ni¿ 1 lub wiêksza ni¿ wysokoœæ/szerokoœæ planszy
+//funkcja zgÅ‚aszajÄ…ca bÅ‚Ä…d, gdy ktÃ³raÅ› ze wspÃ³Å‚rzÄ™dnych punktu jest mniejsza niÅ¼ 1 lub wiÄ™ksza niÅ¼ wysokoÅ›Ä‡/szerokoÅ›Ä‡ planszy
 int error_point_size(int number,int maxx,int maxy,int x,int y)
 {
 	if(x<1||y<1||x>maxx||y>maxy)
 	{
-		if(language==en)printf("Point %d.: (%d,%d) is not an element of interval:  x=<1,%d>, y=<1,%d>. It was not loaded!!\n",number,x,y,maxx,maxy);
-		if(language==pl)printf("Punkt %d. posiada wsporzedne (%d,%d), ktore nie naleza do przdzialu: x=<1,%d>, y=<1,%d>. Nie zostal wczytany!!\n",number,x,y,maxx,maxy);
-		if(language==de)printf("Punkt %d.: (%d,%d) ist kein intervall Element: x=<1,%d>, y=<1,%d>. Es war nicht geladen!!\n",number,x,y,maxx,maxy);
-		if(language==fr)printf("Le point %d.: (%d,%d) n'est pas un élément de l'intervalle: x=<1,%d>, y=<1,%d>. Il n'a pas ete charge!!\n",number,x,y,maxx,maxy);
-		if(language==it)printf("Il punto %d.: (%d,%d) non e un elemento di intervallo: x=<1,%d>, y=<1,%d>. Non e stato caricato!!\n",number,x,y,maxx,maxy);
-		if(language==es)printf("El punto %d.: (%d,%d) numero no es un elemento de intervalo: x=<1,%d>, y=<1,%d>. No estaba cargada!!\n",number,x,y,maxx,maxy);
+	if(language==en)printf("Point %d.: (%d,%d) is not an element of interval:  x=<1,%d>, y=<1,%d>. It was not loaded!!\n",number,x,y,maxx,maxy);
+	if(language==pl)printf("Punkt %d. posiada wsporzedne (%d,%d), ktore nie naleza do przdzialu: x=<1,%d>, y=<1,%d>. Nie zostal wczytany!!\n",number,x,y,maxx,maxy);
+	if(language==de)printf("Punkt %d.: (%d,%d) ist kein intervall Element: x=<1,%d>, y=<1,%d>. Es war nicht geladen!!\n",number,x,y,maxx,maxy);
+	if(language==fr)printf("Le point %d.: (%d,%d) n'est pas un Ã©lÃ©ment de l'intervalle: x=<1,%d>, y=<1,%d>. Il n'a pas ete charge!!\n",number,x,y,maxx,maxy);
+	if(language==it)printf("Il punto %d.: (%d,%d) non e un elemento di intervallo: x=<1,%d>, y=<1,%d>. Non e stato caricato!!\n",number,x,y,maxx,maxy);
+	if(language==es)printf("El punto %d.: (%d,%d) numero no es un elemento de intervalo: x=<1,%d>, y=<1,%d>. No estaba cargada!!\n",number,x,y,maxx,maxy);
 	
-		return 1;
+	return 1;
 	}
-		return 0;
+	return 0;
 }
 
-//funkcja zg³aszaj¹ca b³¹d, gdy po fladze steruj¹cej nie podamy argumentu
+//funkcja zgÅ‚aszajÄ…ca bÅ‚Ä…d, gdy po fladze sterujÄ…cej nie podamy argumentu
 void error_falgargument(char*flagname)
 {
 	if(language==en)printf("After %s you did not enter the vlaue!!\n",flagname);
@@ -125,7 +125,7 @@ void error_falgargument(char*flagname)
 	if(language==de)printf("Nach dem %s Sie haben den Wert nicht eingegeben!!\n",flagname);
 	if(language==fr)printf("Apres %s vous n'avez pas entre de valeur!!\n",flagname);
 	if(language==it)printf("After %s non hai inserito un valore!!\n",flagname);
-	if(language==es)printf("Después de la %s No has introducido un valor!!\n",flagname);
+	if(language==es)printf("DespuÃ©s de la %s No has introducido un valor!!\n",flagname);
 		 	
 	exit(0);
 }
