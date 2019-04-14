@@ -1,9 +1,6 @@
 #ifndef _ERRORS_
 #define _ERRORS_
 
-
-void error_size(char a, char b,char c);
-
 void error_number(char*flagname,char*number);
 
 void error_nofilename();
