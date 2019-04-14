@@ -25,7 +25,7 @@ void read_file(SET setting,GRID *grid[],char* name)
 		if(error_point_size(point_number, setting.width, setting.height, atoi(x), atoi(y))==1) goto next;
 		
 		//wczytywanie punktu do planszy
-		grid[setting.height-atoi(y)][atoi(x)-1]=YES;
+		grid[setting.height-atoi(y)][atoi(x)-1]=ALIVE;
 
 		next:
 		point_number++;
