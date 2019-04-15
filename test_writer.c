@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "file_reader.h"
+#include "writer.h"
 #include "settings.h"
 int main()
 {
