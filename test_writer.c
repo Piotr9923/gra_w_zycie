@@ -37,5 +37,10 @@ int main()
         grid[3][4]=ALIVE;
 
         write(height,width,grid);
+        for(int i=0;i<setting.height;++i)
+                {
+                free(grid[i]);
+                }
+        free(grid);
         return 0;
 }
