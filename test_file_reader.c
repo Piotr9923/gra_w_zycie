@@ -29,5 +29,13 @@ int main()
         SET setting={20,20,name_graphic,name_txt,1,0,0,0,255,255,255,1000};
         read_file(setting,grid,dane_testowe);
         if(grid[19][0]==YES||grid[17][2]==YES||grid[15][4]==YES||grid[13][6]==YES) return 1;
-                else return 0;
+                else
+                {
+                        for(int i=0;i<setting.height;++i)
+                        {
+                                free(grid[i]);
+                        }
+                        free(grid);
+                }
+                return 0;
 }
