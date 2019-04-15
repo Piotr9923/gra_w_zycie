@@ -47,5 +47,12 @@ int main()
         val_check=3;
         val = check_neighbourhood(width,height,grid,1,2);        
         if (val != val_check) return 1;
+             
+        for(int i=0;i<setting.height;++i)
+        {
+                free(grid[i]);
+        }
+        free(grid);
         return 0;
+        
 }
