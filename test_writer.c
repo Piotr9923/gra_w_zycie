@@ -37,5 +37,5 @@ int main()
         grid[3][4]=ALIVE;
 
         write(height,width,grid);
-        else return 0;
+        return 0;
 }
