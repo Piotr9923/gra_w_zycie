@@ -27,7 +27,6 @@ int main()
         char name_txt[]="cells";
         SET setting={height,width,name_graphic,name_txt,1,0,0,0,255,255,255,1000};
         
-        check_neighbourhood(int width,int height ,GRID *grid[], int y, int x)
         grid[1][1]=ALIVE;
         grid[2][2]=ALIVE;
         grid[1][2]=ALIVE;
