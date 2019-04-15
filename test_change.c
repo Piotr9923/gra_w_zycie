@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
         setting.height=4;
         setting.width=4;
 
-        GRID **grid;            //grid - tablica zawieraj¹ca informacjê czy komórka jest ¿ywa czy martwa
-        CHANGE **change;        //change - tablica zawieraj¹ca infrmacjê czy dana komórka zmienia swój stan
+        GRID **grid;            //grid - tablica zawierajÂ¹ca informacjÃª czy komÃ³rka jest Â¿ywa czy martwa
+        CHANGE **change;        //change - tablica zawierajÂ¹ca infrmacjÃª czy dana komÃ³rka zmienia swÃ³j stan
 
-        //alokacja pamiêci dla tablic
+        //alokacja pamiÃªci dla tablic
         grid=malloc(sizeof(GRID*)*setting.height);
         change=malloc(sizeof(CHANGE*)*setting.height);
 
@@ -28,9 +28,9 @@ int main(int argc, char *argv[])
                 grid[i]=malloc(sizeof(GRID)*setting.width);
                 change[i]=malloc(sizeof(CHANGE)*setting.width);
         }
-        //koniec alokacji pamiêci
+        //koniec alokacji pamiÃªci
 
-        //ustawienie wartoœci tablic grid i change na domyœlne
+        //ustawienie wartoÅ“ci tablic grid i change na domyÅ“lne
         for(int i=0;i<setting.height;i++)
         {
             for(int j=0;j<setting.width;j++)
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         int how_many_live;
 
         int test=1;
-                //oznaczenie komórek których stan sie zmienia
+                //oznaczenie komÃ³rek ktÃ³rych stan sie zmienia
                 check_cellstochange(setting.width,setting.height,grid,change,&how_many_change);
 
                 if(
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 
 
-                //zmiana stanów komórek
+                //zmiana stanÃ³w komÃ³rek
                 change_cells(setting.width,setting.height,grid,change,&how_many_live,&how_many_change);
 
                 if(
@@ -88,7 +88,18 @@ int main(int argc, char *argv[])
 
                 if(test==1) printf("Test result: OK\n");
                 else printf("Test result: ERROR\n");
-
-        return 1;
+        
+        
+for(int i=0;i<setting.height;++i)
+                {
+                free(grid[i]);
+                free(change[i]);
+                }
+free(grid);
+change(grid);
+        
+        
+        
+        return 0;
 }
 
